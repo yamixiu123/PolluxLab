@@ -309,6 +309,131 @@
             .about-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; /* 簡易化のためスマホメニュー非表示 */ }
         }
+            #plans {
+            padding: 100px 0;
+            background: rgba(15, 23, 42, 0.5); /* 稍微深一点的背景区分 */
+        }
+
+        /* Flow Styles */
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .flow-step {
+            flex: 1;
+            min-width: 200px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+        .step-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.05);
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+        .flow-step h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .flow-step p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            padding-top: 30px;
+        }
+
+        /* Price Grid Styles */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .price-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, rgba(34, 211, 238, 0.05) 0%, var(--card-bg) 100%);
+        }
+        .label {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .plan-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .plan-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .plan-price {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--text-main);
+        }
+        .plan-price .currency {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .plan-features {
+            text-align: left;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+        .plan-features li {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding-left: 20px;
+            position: relative;
+        }
+        .plan-features li::before {
+            content: '✓';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .flow-arrow { display: none; } /* スマホでは矢印を消す */
+            .flow-container { flex-direction: column; }
+            .flow-step { width: 100%; margin-bottom: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -386,7 +511,94 @@
             </div>
         </div>
     </section>
+<!-- Process & Price Section (追加部分：審査対策用) -->
+    <section id="plans">
+        <div class="container">
+            <h2 class="section-title">Process & Price</h2>
+            
+            <!-- 1. Service Flow (サービスの流れ) -->
+            <div style="margin-bottom: 80px;">
+                <h3 style="color: var(--text-main); margin-bottom: 30px; font-size: 1.5rem;">
+                    <span style="color: var(--accent);">01.</span> Service Flow
+                </h3>
+                <div class="flow-container">
+                    <div class="flow-step">
+                        <div class="step-num">01</div>
+                        <h4>お問い合わせ</h4>
+                        <p>フォームよりご連絡ください。1営業日以内に返信いたします。</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-num">02</div>
+                        <h4>ヒアリング・お見積り</h4>
+                        <p>Zoom等で要件を伺い、正式なお見積書(PDF)を発行します。</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-num">03</div>
+                        <h4>ご契約・着手</h4>
+                        <p>契約締結後、Splunk環境構築/AI検証を開始します。</p>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-num">04</div>
+                        <h4>納品・お支払い</h4>
+                        <p>検証レポート/コード納品後、請求書払いにて決済となります。</p>
+                    </div>
+                </div>
+            </div>
 
+            <!-- 2. Price List (価格表) -->
+            <div>
+                <h3 style="color: var(--text-main); margin-bottom: 30px; font-size: 1.5rem;">
+                    <span style="color: var(--accent);">02.</span> Standard Pricing
+                </h3>
+                <div class="price-grid">
+                    <!-- Plan A -->
+                    <div class="price-card">
+                        <div class="plan-name">Spot Advisory</div>
+                        <div class="plan-desc">技術的な壁打ち・設計レビュー</div>
+                        <div class="plan-price">30,000<span class="currency">円/時間(税別)〜</span></div>
+                        <ul class="plan-features">
+                            <li>オンライン会議 (Zoom/Teams)</li>
+                            <li>アーキテクチャ診断</li>
+                            <li>技術選定アドバイス</li>
+                            <li>支払：月末締め翌月末払い</li>
+                        </ul>
+                    </div>
+                    <!-- Plan B -->
+                    <div class="price-card featured">
+                        <div class="label">Most Popular</div>
+                        <div class="plan-name">PoC Development</div>
+                        <div class="plan-desc">生成AI/Splunk導入の実証実験</div>
+                        <div class="plan-price">500,000<span class="currency">円/案件(税別)〜</span></div>
+                        <ul class="plan-features">
+                            <li>要件定義・環境構築</li>
+                            <li>プロトタイプ開発</li>
+                            <li>検証レポート作成</li>
+                            <li>支払：着手金50% + 完了時50%</li>
+                        </ul>
+                    </div>
+                    <!-- Plan C -->
+                    <div class="price-card">
+                        <div class="plan-name">Technical Retainer</div>
+                        <div class="plan-desc">月額制の技術顧問・運用支援</div>
+                        <div class="plan-price">200,000<span class="currency">円/月(税別)〜</span></div>
+                        <ul class="plan-features">
+                            <li>月10時間までの稼働確保</li>
+                            <li>Slack/TeamsでのQ&A対応</li>
+                            <li>定例ミーティング</li>
+                            <li>支払：毎月ご請求</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted); text-align: right;">
+                    ※上記は参考価格です。要件により変動するため、詳細はお見積りいたします。<br>
+                    ※お支払い方法：銀行振込（請求書払い）に対応しております。
+                </p>
+            </div>
+        </div>
+    </section>
     <!-- About Section -->
     <section id="about">
         <div class="container">
